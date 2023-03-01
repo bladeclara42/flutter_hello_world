@@ -253,7 +253,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const Text(
-              'Percobaan 3 (odd number):',
+              'Percobaan 3 (odd numbers):',
             ),
             Text(
               '$_count_odd_number',
