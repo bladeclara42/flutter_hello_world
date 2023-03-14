@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hello_world/model/tourism_place.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  const DetailScreen({Key? key, required this.place}) : super(key: key);
+
+  final TourismPlace place;
 
   @override
   Widget build(BuildContext build) {
@@ -10,11 +13,11 @@ class DetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Image.asset('assets/images/DepanMuseum.jpg'),
+            Image.asset(place.imageAsset),
             Container(
               margin: const EdgeInsets.only(top: 16.0),
-              child: const Text(
-                "Satria Mandala Museum",
+              child: Text(
+                place.name,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
@@ -29,21 +32,21 @@ class DetailScreen extends StatelessWidget {
                     MainAxisAlignment.spaceEvenly, //spaceBetween//SpaceAround//
                 children: <Widget>[
                   Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Icon(Icons.calendar_today),
-                      Text('Open Everyday'),
+                      Text(place.time),
                     ],
                   ),
                   Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Icon(Icons.access_time_outlined),
-                      Text('08.00 - 16.00'),
+                      Text(place.open),
                     ],
                   ),
                   Column(
-                    children: const <Widget>[
+                    children: <Widget>[
                       Icon(Icons.attach_money),
-                      Text('Rp 10.000,-'),
+                      Text(place.price),
                     ],
                   ),
                 ],
@@ -51,8 +54,8 @@ class DetailScreen extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(16.0),
-              child: const Text(
-                'The Satriamandala Museum (also spelled Satria Mandala Museum) is the main museum for the Indonesian Armed Forces. Opened on 5 October 1972, it is located on 5.6 hectares (14 acres) of land in South Jakarta and holds numerous artefacts, weapons, and vehicles.',
+              child: Text(
+                place.description,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16.0,
@@ -69,32 +72,28 @@ class DetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(32.0),
-                      child: Image.network(
-                          'https://wisato.id/wp-content/uploads/2022/11/Museum-Satriamandala.jpg'),
+                      child: Image.network(place.galleryImageAsset1),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(32.0),
-                      child: Image.asset(
-                          'assets/images/1280px-Artillery,_Satriamandala_Museum.jpg'),
+                      child: Image.asset(place.galleryImageAsset2),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(32.0),
-                      child: Image.asset(
-                          'assets/images/1280px-Hall_of_Heroes,_Satriamandala_Museum.jpg'),
+                      child: Image.asset(place.galleryImageAsset3),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(32.0),
-                      child: Image.asset(
-                          'assets/images/Matjan_Tutul_(replica),_Satriamandala_Museum.jpg'),
+                      child: Image.asset(place.galleryImageAsset4),
                     ),
                   ),
                 ],

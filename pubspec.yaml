@@ -62,10 +62,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/DepanMuseum.jpg
-    - assets/images/1280px-Artillery,_Satriamandala_Museum.jpg
-    - assets/images/1280px-Hall_of_Heroes,_Satriamandala_Museum.jpg
-    - assets/images/Matjan_Tutul_(replica),_Satriamandala_Museum.jpg
+    # - assets/images/*
+    - assets/images/Satriamandala_Museum/
+    - assets/images/Affandi_Museum/
+    - assets/images/PKI_Betrayal_Museum/
+    - assets/images/Fort_Vredeburg_Museum/
+    - assets/images/Yogya_Kembali_Monument/
+    - assets/images/National_Museum_Battle_Kyiv_1943/
+
     
   #   - images/a_dot_ham.jpeg
 
