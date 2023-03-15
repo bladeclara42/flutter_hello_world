@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hello_world/model/tourism_place.dart';
 import 'package:flutter_hello_world/tourism_list.dart';
 import 'package:flutter_hello_world/done_tourism_list.dart';
+import 'package:flutter_hello_world/provider/done_tourism_provider.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -23,15 +24,13 @@ class _MainScreenState extends State<MainScreen> {
             icon: const Icon(Icons.done_outline),
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return DoneTourismList(
-                  doneTourismPlaceList: doneTourismPlaceList,
-                );
+                return const DoneTourismList();
               }));
             },
           ),
         ],
       ),
-      body: TourismList(doneTourismPlaceList: doneTourismPlaceList),
+      body: TourismList(),
     );
   }
 }

@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hello_world/model/tourism_place.dart';
 import 'package:flutter_hello_world/detail_screen.dart';
 import 'package:flutter_hello_world/list_item.dart';
+import 'package:flutter_hello_world/provider/done_tourism_provider.dart';
+import 'package:provider/provider.dart';
 
 class TourismList extends StatefulWidget {
-  final List<TourismPlace> doneTourismPlaceList;
-
-  const TourismList({Key? key, required this.doneTourismPlaceList})
-      : super(key: key);
+  const TourismList({Key? key}) : super(key: key);
 
   @override
-  _TourismListState createState() => _TourismListState(doneTourismPlaceList);
+  _TourismListState createState() => _TourismListState();
 }
 
 class _TourismListState extends State<TourismList> {
-  final List<TourismPlace> doneTourismPlaceList;
   final List<TourismPlace> tourismPlaceList = [
     TourismPlace(
       name: 'Satriamandala Museum',
@@ -125,8 +123,6 @@ class _TourismListState extends State<TourismList> {
     ),
   ];
 
-  _TourismListState(this.doneTourismPlaceList);
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -141,17 +137,19 @@ class _TourismListState extends State<TourismList> {
               }),
             );
           },
-          child: ListItem(
-            place: place,
-            isDone: doneTourismPlaceList.contains(place),
-            onCheckboxClick: (bool? value) {
-              setState(() {
-                if (value != null) {
-                  value
-                      ? doneTourismPlaceList.add(place)
-                      : doneTourismPlaceList.remove(place);
-                }
-              });
+          child: Consumer<DoneTourismProvider>(
+            builder: (context, DoneTourismProvider data, widget) {
+              return ListItem(
+                place: place,
+                isDone: data.doneTourismPlaceList.contains(place),
+                onCheckboxClick: (bool? value) {
+                  setState(() {
+                    if (value != null) {
+                      data.complete(place, value);
+                    }
+                  });
+                },
+              );
             },
           ),
         );
@@ -160,3 +158,13 @@ class _TourismListState extends State<TourismList> {
     );
   }
 }
+
+// final List<TourismPlace> _doneTourismPlaceList = [];
+
+//   List<TourismPlace> get doneTourismPlaceList => _doneTourismPlaceList;
+
+//   void complete(TourismPlace place, bool isDone) {
+//     isDone
+//         ? _doneTourismPlaceList.add(place)
+//         : _doneTourismPlaceList.remove(place);
+//     notifyListeners();
